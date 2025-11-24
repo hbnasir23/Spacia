@@ -1,0 +1,88 @@
+// Firebase Security Rules for Spacia E-Commerce App
+// Copy these rules to Firebase Console > Firestore Database > Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper function to check if user owns the document
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      // Users can read and write their own data
+      allow read, write: if isOwner(userId);
+
+      // Allow users to update their own profile
+      allow update: if isOwner(userId) &&
+                       request.resource.data.keys().hasAll(['name', 'email']);
+    }
+
+    // Products Collection (assuming you have this)
+    match /products/{productId} {
+      // Anyone can read products (even without auth)
+      allow read: if true;
+
+      // Only admins can create/update/delete products
+      // For now, only allow authenticated users
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      // Users can only read their own orders
+      allow read: if isSignedIn() &&
+                     resource.data.userId == request.auth.uid;
+
+      // Users can create orders for themselves
+      allow create: if isSignedIn() &&
+                       request.resource.data.userId == request.auth.uid &&
+                       request.resource.data.keys().hasAll([
+                         'userId', 'items', 'totalAmount',
+                         'paymentMethod', 'status', 'deliveryAddress', 'createdAt'
+                       ]);
+
+      // Users cannot update or delete their orders (only admin should)
+      // For testing, you might want to allow update:
+      // allow update: if isOwner(resource.data.userId);
+      allow update, delete: if false;
+    }
+
+    // Mail Collection (for email sending)
+    match /mail/{mailId} {
+      // Users can create mail documents (for sending their own receipts)
+      allow create: if isSignedIn();
+
+      // Users cannot read, update, or delete mail documents
+      // (handled by Firebase Extension)
+      allow read, update, delete: if false;
+    }
+
+    // Reviews Collection (if you have product reviews)
+    match /reviews/{reviewId} {
+      // Anyone can read reviews
+      allow read: if true;
+
+      // Only authenticated users can create reviews
+      allow create: if isSignedIn() &&
+                      request.resource.data.userId == request.auth.uid;
+
+      // Users can update/delete their own reviews
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+
+    // Cart Collection (if you want to persist cart in database)
+    // Note: Currently cart is managed in-app with Provider
+    match /carts/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+  }
+}
+

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "74769500267",
+    "project_id": "spacia-084",
+    "storage_bucket": "spacia-084.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74769500267:android:f9ece62f8b1513a48a092e",
+        "android_client_info": {
+          "package_name": "com.example.spacia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF4x7G8r3z7u76Fi-XK4fxGK_w9BtuNIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
