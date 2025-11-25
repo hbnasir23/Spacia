@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_sizes.dart';
-import '../../../widgets/custom_topbar.dart';
+import 'widgets/custom_topbar.dart';
 import '../../../business/business_main_screen.dart';
 import 'signup_user_screen.dart';
 import 'signup_business_screen.dart';
