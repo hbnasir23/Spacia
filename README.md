@@ -1,6 +1,6 @@
 # Spacia - Furniture & Interior Decor E-Commerce Platform
 
-<div >
+<div align="center">
   <img src="assets/logo.png" alt="Spacia Logo" width="200"/>
   
   [![Flutter Version](https://img.shields.io/badge/Flutter-3.0+-blue.svg)](https://flutter.dev/)
@@ -22,6 +22,7 @@
 - [User Roles](#user-roles)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -766,11 +767,15 @@ We welcome contributions! Please follow these steps:
 
 ---
 
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ---
 
 ## 👨‍💻 Authors
 
-- **Haris Bin Nasir** - *Initial work* - [YourGitHub](https://github.com/hbnasir23)
+- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
 
 ---
 
@@ -786,7 +791,7 @@ We welcome contributions! Please follow these steps:
 
 ## 📞 Support
 
-For support, email hbansir23@gmail.com or create an issue in the GitHub repository.
+For support, email support@spaciaapp.com or create an issue in the GitHub repository.
 
 ---
 
