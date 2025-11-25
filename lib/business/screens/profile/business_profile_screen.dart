@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../constants/app_colors.dart';
-import '../../../consumer/screens/auth/login_screen.dart';
+import '../../../auth/login_screen.dart';
 
 class BusinessProfileScreen extends StatefulWidget {
   final String businessId;

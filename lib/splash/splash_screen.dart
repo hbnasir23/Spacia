@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
-import '../consumer/screens/auth/login_screen.dart'; // ✅ make sure this path matches your structure
+import '../auth/login_screen.dart'; // ✅ make sure this path matches your structure
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

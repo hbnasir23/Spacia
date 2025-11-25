@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_sizes.dart';
+import '../../../../constants/app_colors.dart';
+import '../../../../constants/app_sizes.dart';
 
 class CustomTopBar extends StatelessWidget {
   final String title;

@@ -7,7 +7,7 @@ import 'widgets/custom_topbar.dart';
 import '../../../business/business_main_screen.dart';
 import 'signup_user_screen.dart';
 import 'signup_business_screen.dart';
-import '../../screens/main_navigation_screen.dart';
+import '../consumer/screens/main_navigation_screen.dart';
 import '../../../admin/admin_main_screen.dart';
 import '../../../services/auth_service.dart';
 

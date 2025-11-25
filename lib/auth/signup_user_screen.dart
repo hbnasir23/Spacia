@@ -5,7 +5,7 @@ import '../../../constants/app_colors.dart';
 import '../../../constants/app_sizes.dart';
 import 'widgets/custom_topbar.dart';
 import '../../../services/auth_service.dart';
-import '../main_navigation_screen.dart';
+import '../consumer/screens/main_navigation_screen.dart';
 import '../../../admin/admin_main_screen.dart';
 import '../../../business/business_main_screen.dart';
 

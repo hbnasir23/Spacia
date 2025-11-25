@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../screens/notifications_screen.dart';
 import '../../services/auth_service.dart';
-import '../../consumer/screens/auth/login_screen.dart';
+import '../../auth/login_screen.dart';
 
 class AdminTopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
