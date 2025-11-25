@@ -1,7 +1,7 @@
 # Spacia - Furniture & Interior Decor E-Commerce Platform
 
 <div align="center">
-  <img src="assets/logo.jpg" alt="Spacia Logo" width="200"/>
+  <img src="assets/logo.png" alt="Spacia Logo" width="200"/>
   
   [![Flutter Version](https://img.shields.io/badge/Flutter-3.0+-blue.svg)](https://flutter.dev/)
   [![Firebase](https://img.shields.io/badge/Firebase-Enabled-orange.svg)](https://firebase.google.com/)
