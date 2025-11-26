@@ -1,32 +1,33 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const {onDocumentCreated} = require("firebase-functions/v2/firestore");
+const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
+admin.initializeApp();
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
+// 1. Configure your email account (Gmail example)
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "hbnasir2023@gmail.com",       // your email
+    pass: "geyk ucwl xafb ybkt",          // NOT your Gmail password
+  },
+});
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// 2. Cloud Function that triggers when a new email doc is created
+exports.sendMail = onDocumentCreated("mail/{docId}", async (event) => {
+  const data = event.data.data();
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+  const mailOptions = {
+    from: "Spacia <hbnasir2023@gmail.com>",
+    to: data.to,
+    subject: data.message.subject,
+    html: data.message.html,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent!");
+  } catch (error) {
+    console.error("Error sending email:", error);
+  }
+});

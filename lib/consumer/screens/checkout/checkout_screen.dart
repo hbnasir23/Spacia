@@ -33,6 +33,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   LatLng? _userLocation;
   String _address = '';
 
+  // Store order details for PDF receipt
+  String? _lastOrderId;
+  List<OrderItem>? _lastOrderItems;
+  double? _lastOrderTotal;
+  DateTime? _lastOrderDate;
+
   // ---------- CARD UI CONTROLLERS ----------
   final TextEditingController _cardNumberController = TextEditingController();
   final TextEditingController _expiryController = TextEditingController(); // MM/YY
@@ -658,6 +664,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
       final docRef = await _firestore.collection('orders').add(orderMap);
 
+      // Save total amount BEFORE clearing cart
+      final orderTotal = cart.totalAmount;
+
+      // Store order details for PDF generation
+      _lastOrderId = docRef.id;
+      _lastOrderItems = orderItems;
+      _lastOrderTotal = orderTotal;
+      _lastOrderDate = DateTime.now();
+
       // Batch reduce stock
       final batch = _firestore.batch();
       for (var cartItem in cart.items.values) {
@@ -679,7 +694,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           userName: _userData?['name'] ?? 'Customer',
           orderId: docRef.id,
           items: orderItems,
-          totalAmount: cart.totalAmount,
+          totalAmount: orderTotal,
           deliveryAddress: _address,
         );
       }
@@ -698,7 +713,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           userName: _userData?['name'] ?? 'Customer',
           orderId: docRef.id,
           items: orderItems,
-          totalAmount: cart.totalAmount,
+          totalAmount: orderTotal,
           deliveryAddress:
           '$_address\nPayment: Paid with $cardBrand **** $last4',
         );
@@ -768,7 +783,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       const SizedBox(height: 10),
 
                       Text(
-                        "Total: \$${cart.totalAmount.toStringAsFixed(2)}",
+                        "Total: \$${orderTotal.toStringAsFixed(2)}",
                         style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
@@ -828,32 +843,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
 
                       const SizedBox(height: 20),
-
-                      // DOWNLOAD RECEIPT BUTTON
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: () {
-                            // TODO → implement PDF download
-                          },
-                          icon: const Icon(Icons.download, color: AppColors.darkBrown),
-                          label: const Text(
-                            "Download Receipt",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.darkBrown,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: AppColors.darkBrown),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                        ),
-                      ),
-
                       const SizedBox(height: 10),
 
                       // CONTINUE BUTTON
