@@ -7,6 +7,9 @@
   [![Firebase](https://img.shields.io/badge/Firebase-Enabled-orange.svg)](https://firebase.google.com/)
 </div>
 
+## 📱 Download APK  
+👉 [Click here to download the Android APK](https://drive.google.com/drive/folders/1Bq4tpu_sgeYgc1Mvuf-e8vribL4uaKyg?usp=drive_link)
+
 
 ## 📄 Download Full Project Report  
 👉 [Click here to download the full project report](./Report.pdf)
