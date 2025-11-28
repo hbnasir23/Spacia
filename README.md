@@ -6,7 +6,8 @@
   [![Flutter Version](https://img.shields.io/badge/Flutter-3.0+-blue.svg)](https://flutter.dev/)
   [![Firebase](https://img.shields.io/badge/Firebase-Enabled-orange.svg)](https://firebase.google.com/)
 </div>
-
+## 📄 Download Full Project Report  
+👉 [Click here to download the full project report](./report.pdf)
 ## 📖 Table of Contents
 
 - [Overview](#overview)
