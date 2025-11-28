@@ -9,7 +9,7 @@
 
 
 ## 📄 Download Full Project Report  
-👉 [Click here to download the full project report](./report.pdf)
+👉 [Click here to download the full project report](./Report.pdf)
 
 
 
